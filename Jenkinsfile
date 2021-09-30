@@ -10,7 +10,7 @@ pipeline {
             }
         }
         
-        stage ('build maven') {
+        stage ('test maven') {
             steps {
                
                     sh 'mvn test'
