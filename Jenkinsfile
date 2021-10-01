@@ -11,7 +11,7 @@ pipeline {
                     println "skipRemainingStages = ${skipRemainingStages}"
                 }
                
-                sh 'mvn compiler'
+                sh 'mvn compile'
                 
             }
         }
