@@ -6,12 +6,13 @@ pipeline {
         stage ('compile maven') {
             steps {
                
-                    sh 'mvn compile'
+                    sh 'mvn compilerrr'
                  script {
                     skipRemainingStages = true
 
                     println "skipRemainingStages = ${skipRemainingStages}"
                 }
+                
             }
         }
        
@@ -23,7 +24,7 @@ pipeline {
             }
             steps {
                
-                    sh 'mvn tes'
+                    sh 'mvn test'
                 
             }
         }
