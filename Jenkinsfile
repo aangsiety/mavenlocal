@@ -20,6 +20,7 @@ pipeline {
                         if (skipRemainingStages) {
                              currentBuild.result = 'FAILURE'
                               error("Stopping early!")
+                              sh "exit 1"
                         }
                           }
                    
