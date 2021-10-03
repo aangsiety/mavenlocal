@@ -9,13 +9,13 @@ pipeline {
                     sh 'mvn compile'
                 }
                 catch (e) {
-                    throw {
                     script {
                     skipRemainingStages = "notskip"
 
                     println "skipRemainingStages = ${skipRemainingStages}"
                     }
-                    }
+                    throw e
+                 
                 }
                     
                 
