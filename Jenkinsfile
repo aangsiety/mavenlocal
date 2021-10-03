@@ -10,7 +10,7 @@ pipeline {
                
                 
                     script {
-                        env.TRIGGER_NEXT = false
+                        env.TRIGGER_NEXT = "true"
                    
                     }
                  }
@@ -19,7 +19,7 @@ pipeline {
         stage ('test maven') {
             when { 
                 expression {
-                    env.TRIGGER_NEXT.toBoolean() == true
+                    environment name: "TRIGGER_NEXT", value: "true"
                 }
             }
             steps {
