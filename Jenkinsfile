@@ -11,11 +11,9 @@ pipeline {
             steps {  
             
                     sh 'mvn compiler'
-                
-               
-                
-                
             }
+                
+       }
         stage ('test maven') {
             if ( currentBuild.result == "FAILED"){
               when { expression { params.RELEASE } }
