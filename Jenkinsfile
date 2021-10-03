@@ -19,7 +19,7 @@ pipeline {
             }
        
         stage ('test maven') {
-            when { equals expected: "notskip", actual: ${skipRemainingStages} }
+            when { equals expected: "notskip", actual: "${skipRemainingStages}" }
             steps {
                
                     sh 'mvn test'
@@ -28,7 +28,7 @@ pipeline {
         }
       
         stage ('build maven') {
-             when { equals expected: "notskip", actual: ${skipRemainingStages} }
+             when { equals expected: "notskip", actual: "${skipRemainingStages}" }
             
             steps {
                
