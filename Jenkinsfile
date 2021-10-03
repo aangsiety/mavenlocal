@@ -6,23 +6,22 @@ pipeline {
         stage ('compile maven') {
             steps {
                
-                    sh 'mvn compiler'
-                if (currentBuild.result == "FAILED"){
+                    sh 'mvn compile'
                     script {
                     skipRemainingStages = "notskip"
 
                     println "skipRemainingStages = ${skipRemainingStages}"
                     }
                     
-                }
-                 
+                
+                
                    
                 }
                 
             }
        
         stage ('test maven') {
-            when { equals expected: "skip", actual: "${skipRemainingStages}" }
+            when { equals expected: "notskip", actual: "${skipRemainingStages}" }
             steps {
                
                     sh 'mvn test'
@@ -31,7 +30,7 @@ pipeline {
         }
       
         stage ('build maven') {
-             when { equals expected: "skip", actual: "${skipRemainingStages}" }
+             when { equals expected: "notskip", actual: "${skipRemainingStages}" }
             
             steps {
                
