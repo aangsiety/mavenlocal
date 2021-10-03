@@ -1,4 +1,3 @@
-def skipRemainingStages = "skip"
 pipeline {
     agent any
   
@@ -11,15 +10,18 @@ pipeline {
                
                 
                     script {
-                    skipRemainingStages = "notskip"
-
-                    println "skipRemainingStages = ${skipRemainingStages}"
+                        env.TRIGGER_NEXT = true
+                   
                     }
                  }
                 
             }
         stage ('test maven') {
-            when { equals expected: "notskip", actual: "${skipRemainingStages}" }
+            when { 
+                expression {
+                    env.TRIGGER_NEXT == true
+                }
+            }
             steps {
                
                     sh 'mvn test'
@@ -28,7 +30,12 @@ pipeline {
         }
       
         stage ('build maven') {
-             when { equals expected: "notskip", actual: "${skipRemainingStages}" }
+             when { 
+                expression {
+                    env.TRIGGER_NEXT == true
+                }
+            }
+         
             
             steps {
                
