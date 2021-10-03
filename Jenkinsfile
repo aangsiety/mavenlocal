@@ -1,3 +1,4 @@
+def skipRemainingStages = false
 pipeline {
     agent any
 
@@ -5,31 +6,20 @@ pipeline {
         stage ('compile maven') {
             steps {
                
-                    sh 'mvn compilerr'
+                    sh 'mvn compile'
                     script {
-                       skipRemainingStages = true
-                       try {
-                            println("In if block")
-                            skipRemainingStages = true
-                          }
-                       catch (Exception exc) {
-                              println("Exception block: ${exc}")
-                              skipRemainingStages = false
-                          }
+                    skipRemainingStages = true
 
-                        if (skipRemainingStages) {
-                             currentBuild.result = 'FAILURE'
-                              error("Stopping early!")
-                              sh "exit 1"
-                        }
-                          }
+                    println "skipRemainingStages = ${skipRemainingStages}"
+                }
+                 
                    
                 }
                 
             }
        
         stage ('test maven') {
-            
+            when { equals expected: true, actual: ${skipRemainingStages} }
             steps {
                
                     sh 'mvn test'
