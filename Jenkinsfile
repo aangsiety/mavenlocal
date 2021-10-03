@@ -6,7 +6,7 @@ pipeline {
         stage ('compile maven') {
             steps {
                
-                    sh 'mvn compile'
+                    sh 'mvn compilerr'
                     script {
                     skipRemainingStages = true
 
