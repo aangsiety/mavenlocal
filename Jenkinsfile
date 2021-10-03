@@ -7,7 +7,7 @@ pipeline {
             steps {
                
                     sh 'mvn compiler'
-                if(currentBuild.result == "FAILED"){
+                if (currentBuild.result == "FAILED"){
                     script {
                     skipRemainingStages = "notskip"
 
