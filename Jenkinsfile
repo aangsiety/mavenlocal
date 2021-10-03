@@ -30,12 +30,11 @@ pipeline {
         }
       
         stage ('build maven') {
-             when { 
+           when { 
                 expression {
-                    env.TRIGGER_NEXT.toBoolean() == true
+                    environment name: "TRIGGER_NEXT", value: "true"
                 }
             }
-         
             
             steps {
                
