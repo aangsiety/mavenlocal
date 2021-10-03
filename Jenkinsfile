@@ -5,11 +5,11 @@ pipeline {
     stages {
         stage ('compile maven') {
             steps {
-                try{
+                try {
                     sh 'mvn compile'
                 }
-                catch(e){
-                    throw{
+                catch (e) {
+                    throw {
                     script {
                     skipRemainingStages = "notskip"
 
