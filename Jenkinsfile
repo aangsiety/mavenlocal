@@ -6,7 +6,7 @@ pipeline {
         stage ('compile maven') {
             steps {  
             
-                    sh 'mvn compilerr'
+                    sh 'mvn compile'
                
                 
                     script {
@@ -48,4 +48,4 @@ pipeline {
         }
     }
 }
-}
+
