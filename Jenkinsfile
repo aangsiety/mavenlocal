@@ -10,7 +10,7 @@ pipeline {
                
                 
                     script {
-                        env.TRIGGER_NEXT = true
+                        env.TRIGGER_NEXT = false
                    
                     }
                  }
