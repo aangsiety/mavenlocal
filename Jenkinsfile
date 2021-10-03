@@ -19,7 +19,7 @@ pipeline {
             }
        
         stage ('test maven') {
-            when { equals expected: true, actual: ${skipRemainingStages} }
+            when { equals expected: true, actual: "${skipRemainingStages}" }
             steps {
                
                     sh 'mvn test'
