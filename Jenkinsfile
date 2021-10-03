@@ -19,7 +19,7 @@ pipeline {
         stage ('test maven') {
             when { 
                 expression {
-                    env.TRIGGER_NEXT == true
+                    env.TRIGGER_NEXT.toBoolean() == true
                 }
             }
             steps {
@@ -32,7 +32,7 @@ pipeline {
         stage ('build maven') {
              when { 
                 expression {
-                    env.TRIGGER_NEXT == true
+                    env.TRIGGER_NEXT.toBoolean() == true
                 }
             }
          
