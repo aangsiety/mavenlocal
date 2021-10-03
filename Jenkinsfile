@@ -25,11 +25,8 @@ pipeline {
             steps {
                
                     sh 'mvn test'
-                    script {
-                        env.TRIGGER_NEXT = "true"
-                
             }
-        }
+ }           
       
         stage ('build maven') {
            when { 
@@ -41,11 +38,10 @@ pipeline {
             steps {
                
                     sh 'mvn package'
-                    script {
-                        env.TRIGGER_NEXT = "true"
                 
             }
         }
+                  
     }
 }
 
