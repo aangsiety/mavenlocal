@@ -7,7 +7,7 @@ pipeline {
             steps {
                
                     sh 'mvn compile'
-                 script {
+                    script {
                     skipRemainingStages = true
 
                     println "skipRemainingStages = ${skipRemainingStages}"
@@ -19,7 +19,7 @@ pipeline {
         stage ('test maven') {
             when {
                 expression {
-                    !skipRemainingStages
+                    skipRemainingStages
                 }
             }
             steps {
@@ -32,7 +32,7 @@ pipeline {
         stage ('build maven') {
             when {
                 expression {
-                    !skipRemainingStages
+                    skipRemainingStages
                 }
             }
             steps {
