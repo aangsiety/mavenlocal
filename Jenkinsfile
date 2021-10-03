@@ -1,23 +1,25 @@
 def skipRemainingStages = "skip"
 pipeline {
     agent any
-    parameters {
-        booleanParam(name: "RELEASE", defaultValue: false)
-    }
   
 
     stages {
         stage ('compile maven') {
             steps {  
             
-                    sh 'mvn compiler'
-            }
+                    sh 'mvn compile'
+               
                 
-       }
-        stage ('test maven') {
-            if ( currentBuild.result == "FAILED"){
-              when { expression { params.RELEASE } }
+                    script {
+                    skipRemainingStages = "notskip"
+
+                    println "skipRemainingStages = ${skipRemainingStages}"
+                    }
+                 }
+                
             }
+        stage ('test maven') {
+            when { equals expected: "notskip", actual: "${skipRemainingStages}" }
             steps {
                
                     sh 'mvn test'
@@ -26,10 +28,7 @@ pipeline {
         }
       
         stage ('build maven') {
-             if ( currentBuild.result == "FAILED"){
-              when { expression { params.RELEASE } }
-            }
-        
+             when { equals expected: "notskip", actual: "${skipRemainingStages}" }
             
             steps {
                
