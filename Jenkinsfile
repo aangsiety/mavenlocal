@@ -25,6 +25,8 @@ pipeline {
             steps {
                
                     sh 'mvn test'
+                    script {
+                        env.TRIGGER_NEXT = "true"
                 
             }
         }
@@ -39,6 +41,8 @@ pipeline {
             steps {
                
                     sh 'mvn package'
+                    script {
+                        env.TRIGGER_NEXT = "true"
                 
             }
         }
