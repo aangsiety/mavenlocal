@@ -41,7 +41,7 @@ pipeline {
             
             steps {
                
-                    sh 'mvn package'
+                    sh 'mvn clean package'
                 script {
                         env.TRIGGER_NEXT = "true"
                    
